@@ -38,6 +38,7 @@ Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -47,6 +48,24 @@ autocmd VimEnter *
   \|   PlugInstall --sync | q
   \| endif
 
+" lightline
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction'
+      \ },
+      \ }
+
+set background=light
 " terminal
 syntax enable
 filetype plugin indent on
