@@ -34,7 +34,10 @@ call plug#begin('~/.nvim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'morhetz/gruvbox'
-Plug 'scrooloose/nerdtree'
+Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'kristijanhusak/defx-git'
+Plug 'kristijanhusak/defx-icons'
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -214,5 +217,7 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-map <C-b> :NERDTreeToggle<CR>
-map <C-i> :NERDTreeFind<CR>
+nnoremap <silent> ;r :<C-u>Dgrep<CR>
+nnoremap <silent> ;f :<C-u>Denite file/rec<CR>
+
+runtime ./maps.vim
